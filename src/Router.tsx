@@ -1,6 +1,11 @@
-import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
-import CharacterList from "./pages/CharacterList";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
+import CharacterListing from "./pages/CharacterListing";
 import Home from "./pages/Home";
+import CharacterPage from "./pages/CharacterPage";
 
 const router = createBrowserRouter([
   {
@@ -8,8 +13,16 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/characters",
-    element: <CharacterList />,
+    path: "/characters/page/:page",
+    element: <CharacterListing />,
+  },
+  {
+    path: "/characters/:id",
+    element: <CharacterPage />,
+  },
+  {
+    path: "/characters/",
+    element: <CharacterListing />
   },
   {
     path: "*",
