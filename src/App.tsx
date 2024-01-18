@@ -25,7 +25,7 @@ function App() {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        refetchOnMount: true,
+        refetchOnMount: false,
         queryFn: defaultQueryFn,
       },
     },
