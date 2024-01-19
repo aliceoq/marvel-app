@@ -1,8 +1,8 @@
-import ReactPaginate from "react-paginate";
 import { Character, QueryResult } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormEvent, useState } from "react";
+import Pagination from "../components/Pagination";
 
 function CharacterListing() {
   const navigate = useNavigate();
@@ -62,17 +62,15 @@ function CharacterListing() {
             ></img>
           </div>
         ))}
-      <ReactPaginate
-        forcePage={Math.ceil((requestData?.data.offset ?? 0) / itemsPerPage)}
-        pageCount={
+      <Pagination
+        currentPage={Math.ceil((requestData?.data.offset ?? 0) / itemsPerPage) + 1}
+        totalPages={
           requestData?.data.total
             ? Math.ceil(requestData?.data.total / itemsPerPage)
             : 0
         }
-        renderOnZeroPageCount={() => <></>}
-        activeClassName="active"
-        onPageChange={(props) =>
-          navigate(`/characters/page/${props.selected + 1}/?${searchParams}`)
+        onPageChange={(newPage) =>
+          navigate(`/characters/page/${newPage}/?${searchParams}`)
         }
       />{" "}
     </div>
