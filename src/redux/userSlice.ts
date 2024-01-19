@@ -11,8 +11,8 @@ export const slice = createSlice({
   },
   reducers: {
     authenticateUser(state, { payload }) {
-      Cookies.set("publickey", payload.publicKey);
-      Cookies.set("privatekey", payload.privateKey);
+      Cookies.set("publickey", payload.publicKey, { expires: 7 });
+      Cookies.set("privatekey", payload.privateKey, { expires: 7 });
       return {
         ...state,
         isAuthenticated: true,
