@@ -1,4 +1,4 @@
-export type Character = {
+export type Item = {
   id: string;
   name: string;
   description: string;
@@ -7,6 +7,11 @@ export type Character = {
     extension: string;
   };
 };
+
+export type IconProps = {
+  width?: number;
+  height?: number;
+}
 
 export type QueryResult<T> = {
   code: number;
@@ -18,3 +23,5 @@ export type QueryResult<T> = {
     results: T[];
   };
 };
+
+export type Size = "bigger" | "big" | "regular" | "small" | "smaller";
