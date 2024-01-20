@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import { useSelector } from "react-redux";
 import { httpRequest } from "./services/api";
 import {
   QueryClient,
@@ -9,8 +8,12 @@ import {
 } from "@tanstack/react-query";
 import { AxiosRequestConfig, Method } from "axios";
 import Router from "./Router";
+import { StyleSheetManager, ThemeProvider } from "styled-components";
+import { shouldForwardProp } from "./utils/theme";
 
 function App() {
+  const { theme } = useSelector((state: any) => state.theme);
+
   const defaultQueryFn = ({
     queryKey,
   }: {
@@ -32,11 +35,13 @@ function App() {
   });
 
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <Router />
-      </QueryClientProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+          <Router />
+        </StyleSheetManager>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
