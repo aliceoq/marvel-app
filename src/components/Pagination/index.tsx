@@ -1,3 +1,6 @@
+import { CaretLeftIcon, CaretRightIcon } from "../Icon";
+import { PageButton, StyledPagination } from "./styles";
+
 interface Props {
   totalPages: number;
   currentPage: number;
@@ -15,7 +18,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: Props) => {
 
     pageNumbers.push(
       <li key={1} className={currentPage === 1 ? "active" : ""}>
-        <button onClick={() => onPageChange(1)}>1</button>
+        <PageButton onClick={() => onPageChange(1)}>1</PageButton>
       </li>
     );
 
@@ -28,18 +31,18 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: Props) => {
     ) {
       pageNumbers.push(
         <li key="ellipsisStart" className="ellipsis">
-          ...
+          <PageButton disabled={true}>...</PageButton>
         </li>
       );
 
-      startPage = Math.max(2, currentPage - 1); // Adjusted start page after ellipsis
+      startPage = Math.max(2, currentPage - 1);
       endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 3);
     }
 
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
         <li key={i} className={currentPage === i ? "active" : ""}>
-          <button onClick={() => onPageChange(i)}>{i}</button>
+          <PageButton onClick={() => onPageChange(i)}>{i}</PageButton>
         </li>
       );
     }
@@ -50,7 +53,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: Props) => {
     ) {
       pageNumbers.push(
         <li key="ellipsisEnd" className="ellipsis">
-          ...
+          <PageButton disabled={true}>...</PageButton>
         </li>
       );
     }
@@ -60,7 +63,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: Props) => {
         key={totalPages}
         className={currentPage === totalPages ? "active" : ""}
       >
-        <button onClick={() => onPageChange(totalPages)}>{totalPages}</button>
+        <PageButton onClick={() => onPageChange(totalPages)}>
+          {totalPages}
+        </PageButton>
       </li>
     );
 
@@ -68,25 +73,25 @@ const Pagination = ({ totalPages, currentPage, onPageChange }: Props) => {
   };
 
   return (
-    <ul className="pagination">
+    <StyledPagination>
       <li>
-        <button
+        <PageButton
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          Prev
-        </button>
+          <CaretRightIcon />
+        </PageButton>
       </li>
       {renderPageNumbers()}
       <li>
-        <button
+        <PageButton
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          Next
-        </button>
+          <CaretLeftIcon />
+        </PageButton>
       </li>
-    </ul>
+    </StyledPagination>
   );
 };
 
