@@ -24,7 +24,7 @@ const MockItems: Item[] = [
     id: "123",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     thumbnail: {
-      path: "/public/Marvel_Logo",
+      path: "/Marvel_Logo",
       extension: "png",
     },
   },
@@ -33,7 +33,7 @@ const MockItems: Item[] = [
     id: "123",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     thumbnail: {
-      path: "/public/Marvel_Logo",
+      path: "/Marvel_Logo",
       extension: "png",
     },
   },
@@ -42,7 +42,7 @@ const MockItems: Item[] = [
     id: "123",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     thumbnail: {
-      path: "/public/Marvel_Logo",
+      path: "/Marvel_Logo",
       extension: "png",
     },
   },
@@ -120,7 +120,7 @@ const ComponentsPage = () => {
         <ContentSection>
           <h2>Card</h2>
           <Card
-            imageURL={"/public/Marvel_Logo.png"}
+            imageURL={"/Marvel_Logo.png"}
             title={"Título do card"}
             onClick={() => alert("onClick")}
           />
@@ -128,7 +128,7 @@ const ComponentsPage = () => {
         <ContentSection>
           <h2>Large Card</h2>
           <LargeCard
-            imageURL={"/public/Marvel_Logo.png"}
+            imageURL={"/Marvel_Logo.png"}
             title={"Título do card"}
             description={
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in ligula id lorem fringilla dapibus. Aliquam suscipit congue mi id commodo. Etiam congue ac erat eget tristique. Cras laoreet arcu non sapien maximus, nec luctus enim tempor. Vestibulum efficitur turpis ex, eu euismod sem maximus eu. Praesent tincidunt lacus ac sem finibus, eu viverra velit lacinia. Nulla facilisi. Integer dignissim ut quam non pharetra. "
