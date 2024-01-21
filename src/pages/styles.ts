@@ -14,4 +14,11 @@ const CardContainer = styled.div`
   width: 100%;
 `;
 
-export { Container, CardContainer };
+const SpinnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+export { Container, CardContainer, SpinnerContainer };
