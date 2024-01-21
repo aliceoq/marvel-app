@@ -24,7 +24,7 @@ const Listing = ({
         {items.map((item: Item, index) => (
           <Card
             key={index}
-            title={item.name}
+            title={item.name ?? item.title ?? item.fullName ?? ''}
             onClick={() => onItemClick(item)}
             imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
           />
