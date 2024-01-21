@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import LargeCard from "../../components/LargeCard";
-import { CardContainer, Container } from "./styles";
+import { CardContainer, Container, SpinnerContainer } from "../styles";
 import Card from "../../components/Card";
+import Spinner from "../../components/Spinner";
 
 function CharacterPage() {
   const navigate = useNavigate();
@@ -57,6 +58,9 @@ function CharacterPage() {
 
   return (
     <Container>
+      <Button onClick={() => navigate("/characters/")}>
+        Ir para a página de personagens
+      </Button>
       <LargeCard
         imageURL={
           character.thumbnail.path + "." + character.thumbnail.extension
@@ -65,19 +69,27 @@ function CharacterPage() {
         description={character.description}
       />
       <h2>Quadrinhos</h2>
-      <CardContainer>
-        {comics.map((item, index) => (
-          <Card
-            key={index}
-            imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-            title={item.title ?? "Sem nome"}
-            onClick={() => {navigate(`/comics/${item.id}`)}}
-          />
-        ))}
-      </CardContainer>
-      <Button onClick={() => navigate("/characters/")}>
-        Ir para a página de personagens
-      </Button>
+      {isLoading && (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      )}
+      {!isLoading && comics.length > 0 ? (
+        <CardContainer>
+          {comics.map((item, index) => (
+            <Card
+              key={index}
+              imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+              title={item.title ?? "Sem nome"}
+              onClick={() => {
+                navigate(`/comics/${item.id}`);
+              }}
+            />
+          ))}
+        </CardContainer>
+      ) : (
+        !isLoading && "Esse personagem não tem quadrinhos relacionados."
+      )}
     </Container>
   );
 }

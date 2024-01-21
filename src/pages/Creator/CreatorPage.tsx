@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import LargeCard from "../../components/LargeCard";
-import { CardContainer, Container } from "./styles";
+import { CardContainer, Container, SpinnerContainer } from "../styles";
 import Card from "../../components/Card";
+import Spinner from "../../components/Spinner";
 
 function CreatorPage() {
   const navigate = useNavigate();
@@ -57,27 +58,36 @@ function CreatorPage() {
 
   return (
     <Container>
-      <LargeCard
-        imageURL={
-          creator.thumbnail.path + "." + creator.thumbnail.extension
-        }
-        title={creator.name ?? "Sem nome"}
-        description={creator.description}
-      />
-      <h2>Quadrinhos</h2>
-      <CardContainer>
-        {comics.map((item, index) => (
-          <Card
-            key={index}
-            imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-            title={item.title ?? "Sem nome"}
-            onClick={() => {navigate(`/comics/${item.id}`)}}
-          />
-        ))}
-      </CardContainer>
       <Button onClick={() => navigate("/creators/")}>
         Ir para a página de criadores
       </Button>
+      <LargeCard
+        imageURL={creator.thumbnail.path + "." + creator.thumbnail.extension}
+        title={creator.fullName ?? "Sem nome"}
+        description={creator.description}
+      />
+      <h2>Quadrinhos</h2>
+      {isLoading && (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      )}
+      {!isLoading && comics.length > 0 ? (
+        <CardContainer>
+          {comics.map((item, index) => (
+            <Card
+              key={index}
+              imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+              title={item.title ?? "Sem nome"}
+              onClick={() => {
+                navigate(`/comics/${item.id}`);
+              }}
+            />
+          ))}
+        </CardContainer>
+      ) : (
+        !isLoading && "Esse criador não tem quadrinhos relacionados."
+      )}
     </Container>
   );
 }

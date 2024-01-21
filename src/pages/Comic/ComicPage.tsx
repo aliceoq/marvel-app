@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import LargeCard from "../../components/LargeCard";
-import { CardContainer, Container } from "./styles";
+import { CardContainer, Container, SpinnerContainer } from "../styles";
 import Card from "../../components/Card";
+import Spinner from "../../components/Spinner";
 
-function CharacterPage() {
+function ComicPage() {
   const navigate = useNavigate();
   const id = useParams()["id"] ?? "";
 
@@ -92,38 +93,57 @@ function CharacterPage() {
 
   return (
     <Container>
-      <LargeCard
-        imageURL={comic.thumbnail.path + "." + comic.thumbnail.extension}
-        title={comic.name ?? comic.title ?? "Sem nome"}
-        description={comic.description}
-      />
-      <h2>Criadores</h2>
-      <CardContainer>
-        {creators.map((item, index) => (
-          <Card
-            key={index}
-            imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-            title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
-            onClick={() => navigate(`/creators/${item.id}`)}
-          />
-        ))}
-      </CardContainer>
-      <h2>Personagens</h2>
-      <CardContainer>
-        {characters.map((item, index) => (
-          <Card
-            key={index}
-            imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-            title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
-            onClick={() => navigate(`/characters/${item.id}`)}
-          />
-        ))}
-      </CardContainer>
       <Button onClick={() => navigate("/comics/")}>
         Ir para a página de quadrinhos
       </Button>
+      <LargeCard
+        imageURL={comic.thumbnail.path + "." + comic.thumbnail.extension}
+        title={comic.title ?? "Sem nome"}
+        description={comic.description}
+      />
+      <h2>Criadores</h2>
+      {isLoadingCreators && (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      )}
+      {!isLoadingCreators && creators.length > 0 ? (
+        <CardContainer>
+          {creators.map((item, index) => (
+            <Card
+              key={index}
+              imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+              title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
+              onClick={() => navigate(`/creators/${item.id}`)}
+            />
+          ))}
+        </CardContainer>
+      ) : (
+        !isLoadingCreators && "Esse quadrinho não tem criadores relacionados."
+      )}
+      <h2>Personagens</h2>
+      {isLoadingCharacters && (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      )}
+      {!isLoadingCharacters && characters.length > 0 ? (
+        <CardContainer>
+          {characters.map((item, index) => (
+            <Card
+              key={index}
+              imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+              title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
+              onClick={() => navigate(`/characters/${item.id}`)}
+            />
+          ))}
+        </CardContainer>
+      ) : (
+        !isLoadingCharacters &&
+        "Esse quadrinho não tem personagens relacionados."
+      )}
     </Container>
   );
 }
 
-export default CharacterPage;
+export default ComicPage;
