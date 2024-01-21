@@ -4,7 +4,7 @@ Teste a aplicação [aqui](https://marvel-app-udn3.onrender.com/) ou execute loc
 
 ## Funcionalidades
 
--- Uso da [Marvel API](https://developer.marvel.com/docs)
+- Uso da [Marvel API](https://developer.marvel.com/docs)
 - **Armazenamento das chaves** de API nos cookies.
 - **Tema claro e escuro**, com a prefêrencia salva nos cookies.
 - Listagem de **personagens**, **quadrinhos** e **criadores** com  paginação.
@@ -12,10 +12,15 @@ Teste a aplicação [aqui](https://marvel-app-udn3.onrender.com/) ou execute loc
 - **Página de detalhamento** com título, imagem, descrição e páginas **relacionadas.**
 - Página de componentes, apresentando todos os componentes utilizados.
 
+## Screenshots
+
+![Tela de personagens](/images/ss1.png)
+![Tela de quadrinho individual](/images/ss2.png)
+![Tela de quadrinhos](/images/ss3.png)
+
 ## Documentação
 
 A estrutura do código segue o seguinte formato:
-
 ```
 marvel-app/
 |-- public/
