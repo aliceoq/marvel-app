@@ -25,7 +25,7 @@ const ContentLayout = styled.div`
   width: calc(100% - 128px);
 
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   @media (max-width: 640px) {
     padding: 32px;
