@@ -45,7 +45,7 @@ const Header = ({ children }: HeaderProps) => {
       <Logo
         onClick={() => navigate("/")}
         alt="Marvel APP"
-        src="/public/Marvel_Logo.png"
+        src="/Marvel_Logo.png"
       ></Logo>
       <Links>
         {children}
