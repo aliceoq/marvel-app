@@ -6,6 +6,8 @@ import TextInput from "../../components/TextInput";
 import Listing from "../../components/Listing";
 import Button from "../../components/Button";
 import { Flex, FlexColumn, Form } from "./styles";
+import Spinner from "../../components/Spinner";
+import { SpinnerContainer } from "../styles";
 
 interface Props {
   path: string;
@@ -20,7 +22,7 @@ function ListingPage({ path, endpoint, name }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const searchParams = new URLSearchParams(location.search);
 
-  const { data: requestData } = useQuery<QueryResult<Item>>({
+  const { data: requestData, isLoading } = useQuery<QueryResult<Item>>({
     queryKey: [
       endpoint,
       "GET",
@@ -28,8 +30,10 @@ function ListingPage({ path, endpoint, name }: Props) {
         params: {
           limit: itemsPerPage,
           offset: itemsPerPage * page,
-          ...(searchParams && path === 'comics' && { titleStartsWith: searchParams.get("s") }),
-          ...(searchParams && path !== 'comics' && { nameStartsWith: searchParams.get("s") }),
+          ...(searchParams &&
+            path === "comics" && { titleStartsWith: searchParams.get("s") }),
+          ...(searchParams &&
+            path !== "comics" && { nameStartsWith: searchParams.get("s") }),
         },
       },
     ],
@@ -63,17 +67,23 @@ function ListingPage({ path, endpoint, name }: Props) {
           Ver todos
         </Button>
       </Flex>
-      <Listing
-        page={Math.ceil((requestData?.data.offset ?? 0) / itemsPerPage) + 1}
-        totalPages={Math.ceil((requestData?.data.total ?? 0) / itemsPerPage)}
-        items={requestData?.data.results ?? []}
-        onPageChange={(newPage) =>
-          navigate(`/${path}/page/${newPage}/?${searchParams}`)
-        }
-        onItemClick={(item) =>
-          navigate(`/${path}/${item.id}`, { state: { item } })
-        }
-      />
+      {isLoading ? (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      ) : (
+        <Listing
+          page={Math.ceil((requestData?.data.offset ?? 0) / itemsPerPage) + 1}
+          totalPages={Math.ceil((requestData?.data.total ?? 0) / itemsPerPage)}
+          items={requestData?.data.results ?? []}
+          onPageChange={(newPage) =>
+            navigate(`/${path}/page/${newPage}/?${searchParams}`)
+          }
+          onItemClick={(item) =>
+            navigate(`/${path}/${item.id}`, { state: { item } })
+          }
+        />
+      )}
     </FlexColumn>
   );
 }
