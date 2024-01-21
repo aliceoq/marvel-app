@@ -5,8 +5,10 @@ import store from "../../redux/store";
 import TextInput from "../../components/TextInput";
 import Button from "../../components/Button";
 import { Form } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 function Auth() {
+  const navigate = useNavigate();
   const { user } = store.getState();
   const [privateKey, setPrivateKey] = useState(user.privateKey);
   const [publicKey, setPublicKey] = useState(user.publicKey);
@@ -14,7 +16,7 @@ function Auth() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     dispatch(authenticateUser({ publicKey, privateKey }));
-
+    navigate("/characters");
     event.preventDefault();
   }
 
