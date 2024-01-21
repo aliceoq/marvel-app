@@ -3,19 +3,22 @@ import styled from 'styled-components';
 const Container = styled.div`
   position: relative;
   display: inline-block;
+  width: max-content;
+  height: max-content;
 `;
 
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{ direction: 'left' | 'right'}>`
   position: absolute;
 
-  top: 100%;
-  right: 0;
+  right: ${(props) => props.direction === 'left' ? 'auto' : '0'};
+  left: ${(props) => props.direction === 'right' ? 'auto' : '0'};
   z-index: 9999;
 
   width: max-content;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   padding: 8px;
   gap: 8px;
