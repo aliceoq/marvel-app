@@ -29,6 +29,7 @@ function App() {
       queries: {
         refetchOnWindowFocus: false,
         refetchOnMount: false,
+        retry: false,
         queryFn: defaultQueryFn,
       },
     },
