@@ -22,7 +22,8 @@ const Image = styled.img`
   height: 200px;
 
   border-radius: 5px 5px 0 0;
-  
+  border-bottom: 5px solid ${(props) => props.theme.highlight};
+
   align-self: center;
   object-fit: cover;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
