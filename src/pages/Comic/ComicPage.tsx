@@ -104,7 +104,7 @@ function CharacterPage() {
             key={index}
             imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
             title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
-            onClick={() => {`/creators/${item.id}`}}
+            onClick={() => navigate(`/creators/${item.id}`)}
           />
         ))}
       </CardContainer>
@@ -115,7 +115,7 @@ function CharacterPage() {
             key={index}
             imageURL={`${item.thumbnail.path}.${item.thumbnail.extension}`}
             title={item.title ?? item.name ?? item.fullName ?? "Sem nome"}
-            onClick={() => {`/characters/${item.id}`}}
+            onClick={() => navigate(`/characters/${item.id}`)}
           />
         ))}
       </CardContainer>
