@@ -8,6 +8,8 @@ import Button from "../../components/Button";
 import { Flex, FlexColumn, Form } from "./styles";
 import Spinner from "../../components/Spinner";
 import { SpinnerContainer } from "../styles";
+import ErrorMessage from "../../components/ErrorMessage";
+import { AxiosError } from "axios";
 
 interface Props {
   path: string;
@@ -22,7 +24,11 @@ function ListingPage({ path, endpoint, name }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const searchParams = new URLSearchParams(location.search);
 
-  const { data: requestData, isLoading } = useQuery<QueryResult<Item>>({
+  const {
+    data: requestData,
+    isLoading,
+    error,
+  } = useQuery<QueryResult<Item>>({
     queryKey: [
       endpoint,
       "GET",
@@ -90,9 +96,7 @@ function ListingPage({ path, endpoint, name }: Props) {
           }
         />
       )}
-      {!isLoading &&
-        requestData?.data.total === 0 &&
-        "Não encontramos nenhum item."}
+      {!isLoading && error && <ErrorMessage error={error as AxiosError}/>}
     </FlexColumn>
   );
 }
