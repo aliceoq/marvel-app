@@ -63,7 +63,13 @@ function ListingPage({ path, endpoint, name }: Props) {
           />
           <Button>Buscar</Button>
         </Form>
-        <Button appearance="secondary" onClick={() => navigate(`/${path}`)}>
+        <Button
+          appearance="secondary"
+          onClick={() => {
+            setSearchTerm("");
+            navigate(`/${path}`);
+          }}
+        >
           Ver todos
         </Button>
       </Flex>
@@ -84,6 +90,9 @@ function ListingPage({ path, endpoint, name }: Props) {
           }
         />
       )}
+      {!isLoading &&
+        requestData?.data.total === 0 &&
+        "Não encontramos nenhum item."}
     </FlexColumn>
   );
 }
