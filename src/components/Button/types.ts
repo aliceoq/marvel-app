@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import { IconProps } from "../../types";
 
-type Appearance = "primary" | "secondary" | "link";
+export type Appearance = "primary" | "secondary" | "link";
 type Spacing = "default" | "compact" | "none";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
