@@ -1,5 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { HeaderContainer, Links, MediumLinks, SmallLinks } from "./styles";
+import {
+  HeaderContainer,
+  Links,
+  Logo,
+  MediumLinks,
+  SmallLinks,
+} from "./styles";
 import { MenuIcon, MoonIcon, SunIcon } from "../Icon";
 import { flipTheme } from "../../redux/themeSlice";
 import Button from "../Button";
@@ -24,26 +30,37 @@ const Header = ({ children }: HeaderProps) => {
         dispatch(flipTheme());
       }}
     >
-      Theme
+      Tema
+    </Button>
+  );
+
+  const ComponentsButton = (
+    <Button appearance={"secondary"} onClick={() => navigate("/components")}>
+      Componentes
     </Button>
   );
 
   return (
     <HeaderContainer>
-      <h1>
-        <a onClick={() => navigate("/")}>Marvel APP</a>
-      </h1>
+      <Logo
+        onClick={() => navigate("/")}
+        alt="Marvel APP"
+        src="/public/Marvel_Logo.png"
+      ></Logo>
       <Links>
         {children}
+        {ComponentsButton}
         {ThemeButton}
       </Links>
       <MediumLinks>
-        <Dropdown Icon={MenuIcon}>{children}</Dropdown>
+        {ComponentsButton}
         {ThemeButton}
+        <Dropdown Icon={MenuIcon}>{children}</Dropdown>
       </MediumLinks>
       <SmallLinks>
         <Dropdown Icon={MenuIcon}>
           {children}
+          {ComponentsButton}
           {ThemeButton}
         </Dropdown>
       </SmallLinks>

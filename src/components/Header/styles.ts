@@ -15,6 +15,7 @@ const HeaderContainer = styled.header`
 
   display: flex;
   justify-content: space-evenly;
+  align-content: center;
   align-items: center;
   flex-wrap: wrap;
 
@@ -24,8 +25,9 @@ const HeaderContainer = styled.header`
 const Links = styled.div`
   display: flex;
   gap: 16px;
+  align-items: center;
 
-  @media (max-width: 775px) {
+  @media (max-width: 832px) {
     display: none;
   }
 `;
@@ -33,21 +35,28 @@ const Links = styled.div`
 const MediumLinks = styled.div`
   display: none;
 
-  @media (max-width: 775px) {
+  @media (max-width: 832px) {
     display: flex;
     gap: 16px;
+    align-items: center;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 640px) {
     display: none;
   }
 `;
 
 const SmallLinks = styled.div`
   display: none;
-  @media (max-width: 400px) {
+  @media (max-width: 640px) {
     display: block;
   }
 `;
 
-export { HeaderContainer, Links, MediumLinks, SmallLinks };
+const Logo = styled.img`
+  cursor: pointer;
+  height: 40px;
+  width: auto;
+`;
+
+export { HeaderContainer, Links, MediumLinks, SmallLinks, Logo };
