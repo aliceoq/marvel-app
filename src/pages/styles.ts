@@ -5,6 +5,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 32px;
   max-width: 900px;
+  width: 100%;
 `;
 
 const CardContainer = styled.div`
