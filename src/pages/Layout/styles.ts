@@ -29,6 +29,7 @@ const ContentLayout = styled.div`
 
   @media (max-width: 640px) {
     padding: 32px;
+    padding-top: 120px;
     width: calc(100% - 64px);
   }
 `;

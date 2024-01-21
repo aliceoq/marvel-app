@@ -28,7 +28,7 @@ const Layout = () => {
             </Button>
             <Button
               appearance="secondary"
-              onClick={() => navigate("/criadores")}
+              onClick={() => navigate("/creators")}
             >
               Criadores
             </Button>
