@@ -1,6 +1,6 @@
 import { IconProps } from "../../types";
 
-function Sun({ width, height }: IconProps) {
+function Sun({ width = 16, height = 16 }: IconProps) {
   return (
     <svg
       width={width}
