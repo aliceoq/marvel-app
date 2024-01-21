@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { ButtonStyleProps, padding } from "./types";
 
-const ButtonContainer = styled.div<{ fullWidth: boolean }>`
-  width: ${(props) => (props.fullWidth ? "100%" : "max-content")};
-`;
-
 const StyledButton = styled.button<ButtonStyleProps>`
   cursor: pointer;
 
@@ -25,6 +21,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
 
+  width: ${(props) => (props.fullWidth ? "100%" : "max-content")};
   gap: 10px;
   padding: ${(props) => padding[props.spacing]};
 
@@ -38,4 +35,4 @@ const StyledButton = styled.button<ButtonStyleProps>`
   }
 `;
 
-export { ButtonContainer, StyledButton };
+export { StyledButton };

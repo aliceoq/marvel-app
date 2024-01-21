@@ -14,6 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export interface ButtonStyleProps {
   appearance: Appearance;
   spacing: Spacing;
+  fullWidth: boolean;
 }
 
 export const padding: { [key in Spacing]: string } = {

@@ -1,4 +1,4 @@
-import { ButtonContainer, StyledButton } from "./styles";
+import { StyledButton } from "./styles";
 import { ButtonProps } from "./types";
 
 const Button = ({
@@ -10,12 +10,15 @@ const Button = ({
   ...buttonProps
 }: ButtonProps) => {
   return (
-    <ButtonContainer fullWidth={fullWidth}>
-      <StyledButton {...buttonProps} spacing={spacing} appearance={appearance}>
-        {Icon && <Icon width={16} height={15} />}
-        {children}
-      </StyledButton>
-    </ButtonContainer>
+    <StyledButton
+      fullWidth={fullWidth}
+      {...buttonProps}
+      spacing={spacing}
+      appearance={appearance}
+    >
+      {Icon && <Icon width={16} height={15} />}
+      {children}
+    </StyledButton>
   );
 };
 
